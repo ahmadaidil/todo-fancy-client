@@ -16,6 +16,7 @@ var todo = new Vue({
                 }
             })
             .then(result=>{
+                console.log(result)
                 this.lists = result.data;
                 this.countTodos();
             })
@@ -24,9 +25,18 @@ var todo = new Vue({
             })
         },
 
+        // checkFB(){
+        //     this.fbAuth = localStorage.getItem('fbAuth')
+        //     if(this.fbAuth){
+        //         this.getList('todofb')    
+        //     }
+        //     else{
+        //         this.getList('todo')
+        //     }
+        // },
+
         createTodo(){
             axios.post('http://localhost:3000/api/todo/create', {
-                userId : this.lists[0].userId,
                 task : $('.add-todo').val()
             },{
                 headers : {
@@ -70,6 +80,8 @@ var todo = new Vue({
         },
 
         logout(){
+            FBLogout()
+            localStorage.removeItem('fbaccesstoken')
             localStorage.removeItem('accesstoken')
             window.location = `${window.location.protocol}//${window.location.hostname}:8080`
         },
@@ -86,6 +98,6 @@ var todo = new Vue({
         }
     },
     created() {
-        this.getList();
+        this.getList()
     }
 })

@@ -51,6 +51,7 @@ var login = new Vue({
           } else {
             // $('.container').addClass("active")
             localStorage.setItem('accesstoken', result.data.token)
+            // localStorage.setItem('fbAuth', false)
             this.loginError = false
             this.loginMessage = null
             this.loginUsername = null

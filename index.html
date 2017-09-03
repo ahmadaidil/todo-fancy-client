@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../assets/css/login.css">
     <!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="../assets/js/fb.js" charset="utf-8"></script>
     <title>todo-fancy - login</title>
 </head>
 <body>
@@ -54,6 +55,7 @@
 												</div>
 											</div>
 										</div>
+										<div class="text-center"><fb:login-button scope="public_profile, email" onlogin="FBLogin()"></fb:login-button></div>
 									</div>
 									<div id="register-form" role="form" style="display: none;">
 										<p v-if="signupMsg!=null" class="text-center" style="color: red">{{signupMsg}}</p>
