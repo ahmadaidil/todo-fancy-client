@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript">
+        if (localStorage.getItem('accesstoken') != null)
+          window.location = `${window.location.protocol}//${window.location.hostname}:8080/dashboard`
+	</script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <title>todo-fancy - login</title>
+</head>
+<body>
+	<div id="login">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<div class="panel panel-login">
+						<div class="panel-heading">
+							<div class="row">
+								<div class="col-xs-6">
+									<a href="#" class="active" id="login-form-link">Login</a>
+								</div>
+								<div class="col-xs-6">
+									<a href="#" id="register-form-link">Register</a>
+								</div>
+							</div>
+							<hr>
+						</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div id="login-form" role="form" style="display: block;">
+										<p v-if="loginError" class="text-center" style="color: red">{{loginMessage}}</p>
+										<div class="form-group">
+											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" v-model="loginUsername">
+										</div>
+										<div class="form-group">
+											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" v-model="loginPass">
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<button type="submit" name="login-submit" id="login-submit" tabindex="3" class="form-control btn btn-login" v-on:click="login()">Login</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div id="register-form" role="form" style="display: none;">
+										<p v-if="signupMsg!=null" class="text-center" style="color: red">{{signupMsg}}</p>
+										<div class="form-group">
+											<input type="text" name="fullname" id="fullname" tabindex="1" class="form-control" placeholder="Fullname" v-model="signupFullname">
+										</div>
+										<div class="form-group">
+											<input type="text" name="username" id="username" tabindex="2" class="form-control" placeholder="Username" value="" v-model="signupUsername">
+										</div>
+										<div class="form-group">
+											<input type="email" name="email" id="email" tabindex="3" class="form-control" placeholder="Email Address" value="" v-model="signupEmail">
+										</div>
+										<div class="form-group">
+											<input type="password" name="password" id="password" tabindex="4" class="form-control" placeholder="Password" v-model="signupPass">
+										</div>
+										<div class="form-group">
+											<div class="row">
+												<div class="col-sm-6 col-sm-offset-3">
+													<button type="submit" name="register-submit" id="register-submit" tabindex="5" class="form-control btn btn-register" v-on:click="register()">Register</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<footer class="footer">
+	<div class="container"><p class="text-center">Copyright &copy; 2017 Ahmad Aidil F. All Right Reserved</p></div>
+</footer>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="../assets/js/login.js"></script>
+</html>

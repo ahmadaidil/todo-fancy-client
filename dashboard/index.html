@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript">
+        if (localStorage.getItem('accesstoken') == null)
+          window.location = `${window.location.protocol}//${window.location.hostname}:8080`
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <title>Dashboard - todo-fancy</title>
+</head>
+<body>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <div id="todo">
+        <div class="navbar">
+            <button class="btn btn-danger pull-right" v-on:click="logout()"><span class="glyphicon glyphicon-log-out">-logout</span></button>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="todolist not-done">
+                        <h1>Todos</h1>
+                        <input type="text" class="form-control add-todo" placeholder="Add todo (press enter to add)" @keyup.enter="createTodo()">
+                            <!-- <button id="checkAll" class="btn btn-success">Mark all as done</button> -->
+                            <hr>
+                            <ul id="done-items" class="list-unstyled" v-for="(list, index) in lists" v-if="!list.completed">
+                            <li class="text-justify mark">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-md-10">{{list.task}}</div>
+                                        <div class="col-xs-1 col-md-1"><button class="btn btn-primary btn-xs" v-on:click="completeTodo(list)"><span class="glyphicon glyphicon-check"></span></button></div>
+                                        <div class="col-xs-2 col-md-1"><button class="btn btn-danger btn-xs pull-right" v-on:click="deleteTodo(list)"><span class="glyphicon glyphicon-remove"></span></button></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="todo-footer">
+                            <p v-if="itemsLeft>1"><strong >{{itemsLeft}}</strong> todos left</p>
+                            <p v-if="itemsLeft==1"><strong >{{itemsLeft}}</strong> todo left</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="todolist">
+                        <h1>Already Done</h1>
+                        <hr>
+                        <ul id="done-items" class="list-unstyled" v-for="list in lists" v-if="list.completed">
+                            <!-- <li class="text-justify"><mark>{{list.task}}</mark><span class="pull-right"><button class="undo-item btn btn-primary btn-xs" v-on:click="undoTodo(list)"><span class="glyphicon glyphicon-unchecked"></span></button> <button class="remove-item btn btn-danger btn-xs" v-on:click="deleteTodo(list)"><span class="glyphicon glyphicon-remove"></span></button></span></li> -->
+                            <li class="mark">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-md-10"><s>{{list.task}}</s></div>
+                                        <div class="col-xs-1 col-md-1"><button class="btn btn-primary btn-xs" v-on:click="completeTodo(list)"><span class="glyphicon glyphicon-unchecked"></span></button></div>
+                                        <div class="col-xs-2 col-md-1"><button class="btn btn-danger btn-xs pull-right" v-on:click="deleteTodo(list)"><span class="glyphicon glyphicon-remove"></span></button></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr>
+                        <div class="todo-footer">
+                            <p v-if="itemsDone>1"><strong >{{itemsDone}}</strong> todos completed</p>
+                            <p v-if="itemsDone==1"><strong >{{itemsDone}}</strong> todo completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</body>
+<footer class="footer">
+    <div class="container"><p class="text-center">Copyright &copy; 2017 Ahmad Aidil F. All Right Reserved</p></div>
+</footer>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script src="../assets/js/dashboard.js"></script>
+</html>
