@@ -37,7 +37,7 @@ var login = new Vue({
     //   },
   
       login() {
-        axios.post('http://localhost:3000/api/auth/signin', {
+        axios.post('http://35.186.146.79/api/auth/signin', {
           username: this.loginUsername,
           password: this.loginPass
         })
@@ -63,7 +63,7 @@ var login = new Vue({
       },
   
       register() {
-        axios.post('http://localhost:3000/api/auth/signup', {
+        axios.post('http://35.186.146.79/api/auth/signup', {
           username: this.signupUsername,
           password: this.signupPass,
           fullname: this.signupFullname,

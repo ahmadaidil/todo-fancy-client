@@ -5,77 +5,55 @@ var todo = new Vue({
         itemsLeft : null,
         itemsDone : null
     },
-    computed: {
-
-    },
     methods: {
         getList(){
-            axios.get('http://localhost:3000/api/todo/searchId', {
+            axios.get('http://35.186.146.79/api/todo/searchId', {
                 headers: {
                     token: localStorage.getItem('accesstoken')
                 }
             })
-            .then(result=>{
-                console.log(result)
-                this.lists = result.data;
-                this.countTodos();
-            })
-            .catch(err=>{
-                console.log(err)
+            .then(response => {
+                this.lists = null
+                this.lists = response.data
+                this.countTodos()
             })
         },
 
-        // checkFB(){
-        //     this.fbAuth = localStorage.getItem('fbAuth')
-        //     if(this.fbAuth){
-        //         this.getList('todofb')    
-        //     }
-        //     else{
-        //         this.getList('todo')
-        //     }
-        // },
-
         createTodo(){
-            axios.post('http://localhost:3000/api/todo/create', {
+            axios.post('http://35.186.146.79/api/todo/create', {
                 task : $('.add-todo').val()
             },{
                 headers : {
                     token : localStorage.getItem('accesstoken')
                 }
             })
-            .then(result=>{
+            .then(response => {
                 $('.add-todo').val('')
                 this.getList()
             })
         },
 
         completeTodo(list){
-            axios.put(`http://localhost:3000/api/todo/updateComplete/${list._id}`, {}, {
+            axios.put(`http://35.186.146.79/api/todo/updateComplete/${list._id}`, {}, {
                 headers : {
                     token : localStorage.getItem('accesstoken')
                 }
             })
-            .then(result=>{
+            .then((response)=>{
                 // console.log(result)
                 this.getList()
-            })
-            .catch(err=>{
-                console.log(err)
             })
         },
 
         deleteTodo(list){
-            axios.delete(`http://localhost:3000/api/todo/remove/${list._id}`, {
+            axios.delete(`http://35.186.146.79/api/todo/remove/${list._id}`, {
                 headers : {
                     token : localStorage.getItem('accesstoken')
                 }
             })
-            .then(result=>{
+            .then(response => {
                 // console.log(result)
                 this.getList()
-            })
-            .catch(err=>{
-                console.log(err)
             })
         },
 
@@ -91,13 +69,13 @@ var todo = new Vue({
         countTodos(){
             this.itemsLeft = null
             this.itemsDone = null
-            this.lists.forEach(list=>{
+            this.lists.forEach(list =>{
                 if (!list.completed) this.itemsLeft += 1;
                 else if(list.completed) this.itemsDone +=1;
             })
         }
     },
-    created() {
+    mounted() {
         this.getList()
     }
 })

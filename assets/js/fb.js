@@ -65,7 +65,7 @@ function FBLogout () {
 function createAccess (response) {
   FB.api('/me', function(response){
     // console.log(response.id);
-    axios.post('http://localhost:3000/api/auth/signinFB', {
+    axios.post('http://35.186.146.79/api/auth/signinFB', {
       fullname : response.name,
       userId : response.id
     })
