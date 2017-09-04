@@ -61,7 +61,7 @@ var todo = new Vue({
             FBLogout()
             localStorage.removeItem('fbaccesstoken')
             localStorage.removeItem('accesstoken')
-            window.location = `${window.location.protocol}//${window.location.hostname}:8080`
+            window.location = `${window.location.protocol}//${window.location.hostname}`
         },
 
         //helpers

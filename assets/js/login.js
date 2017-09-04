@@ -56,7 +56,7 @@ var login = new Vue({
             this.loginMessage = null
             this.loginUsername = null
             this.loginPass = null
-            window.location = `${window.location.protocol}//${window.location.hostname}:8080/dashboard`
+            window.location = `${window.location.protocol}//${window.location.hostname}/dashboard`
           }
         })
         .catch(err => console.log(err))

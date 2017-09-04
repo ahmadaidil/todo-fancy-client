@@ -72,7 +72,7 @@ function createAccess (response) {
     .then(result=>{
       // console.log(result)
       localStorage.setItem('accesstoken', result.data.token)
-      window.location = `${window.location.protocol}//${window.location.hostname}:8080/dashboard`
+      window.location = `${window.location.protocol}//${window.location.hostname}/dashboard`
     })
     .catch(err=>{
       console.log(err)
